@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Talk for my MS thesis}
+\author{luca.parolari23@gmail.com}
+\date{December 16, 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Talk}
+
+\textbf{Stato dell'arte}. In letterature sono stati sperimentate
+diverse strategie per affrontare il problema del phrase grounding. In
+ambito weakly superivsed però, non avendo a disposizione la ground
+truth (ovver l'informazione su quale sia la proposal corretta da
+collegare ad una frase), non è possibile operare in maniera
+tradizionale. Per questo motivo, alcuni lavori tentano di sfruttare la
+struttura morfosintattica delle frasi in linguaggio naturale per
+costruire dei vincoli che la localizzazione degli oggetti
+nell'immagine deve rispettare. Altri invece riformulano il problema
+del phrase grounding come un task di image retrieval, ovvero data una
+frase bisogna cercare l'immagine descritta dalla frase tra un set di
+immagini. L'ipotesi è che imparare a cercare un'immagine data una
+frase che la descriva implichi imparare a localizzare porzioni di
+immagine, ovvero fare grounding. In altri casi invece si sfrutta la supervisione weak per imparare a ricostruire le feature originali di immagine e testo da un codice. In questo caso si utilizza l'approccio encoder-decoder. In alcuni lavori recenti si nota un maggiore utilizzo di informazioni aggiuntive come la conoscenza dell'object detector. In particolare, spesso e volentieri l'object detector è allenato per classificare categorie di bounding box su un set di etichette, che teoricamente dovrebbero il contenuto semantico della proposal.
+
+\textbf{La nostra soluzione}.
+
+
+\end{document}

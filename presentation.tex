@@ -2,52 +2,108 @@
 
 \usepackage{./theme/beamerthemePadova}
 
-\title{Lorem ipsum dolor sit amet}
+\title{Weakly Supervised Visual-Textual Grounding based on Concept Similarity}
 \subtitle{Curabitur sit amet mi magna}
-\author{Tizio Caio}
-\date{January 1, 1900}
+\author{Luca Parolari}
+\date{16 dicembre 2021}
 
 
 \begin{document}
 
-	\maketitle
+\maketitle
 
-	\begin{frame}{Outline}
-		\tableofcontents
-	\end{frame}
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
 
+\section{Il problema}
 
-	\section{Introduction}
+\begin{frame}{Visual-Textual Grounding}
+  \centering
+  \includegraphics[width=7cm]{images/dog-playing-with-ball.png}
 
-	\begin{frame}{Introduction}
+  \vspace{0.5cm}
 
-		Etiam eu interdum ligula
+  \begin{alertblock}{Def. (Phrase Grounding)}
+    Attività di localizzazione del contenuto di un immagine referenziato da una
+    frase.
+  \end{alertblock}
+\end{frame}
 
-		Nunc mi eros, vulputate in ornare a, viverra eget quam \vspace{.5em}
+\section{Motivazione}
 
-		\begin{itemize}
-			\item Morbi \textbf{vitae lacus} porta neque tincidunt sodales \vspace{.5em}
-			\item Proin tincidunt, \textbf{neque} at tincidunt mollis \vspace{.5em}
-			\item Ut \alert{lacinia sem a nibh} consequat porttitor
-		\end{itemize}
-	\end{frame}
+\begin{frame}{Motivazione}
+  \begin{itemize}
+    \item Tassello fondamentale per diversi task in computer vision
+    \item Capire in modo più profondo come gli umani fanno phrase grounding
+  \end{itemize}
+\end{frame}
 
+\section{Stato dell'arte}
 
-	\section{First section}
+\begin{frame}{Approcci}
+  \begin{itemize}
+    \item Sfruttare l'informazione contenuta nella \alert{struttura
+    della frase}
+    \item Riformulare il problema del phrase grounding sotto forma del
+    task \alert{image retrieval}
+    \item \alert{Ricostruire} le feature originali partendo da un
+    codice (encoder-decoder)
+  \end{itemize}
+\end{frame}
 
-	\begin{frame}{First section}
-		\begin{block}{Normal block}
-			Fusce luctus venenatis felis quis semper
-		\end{block}
+\section{La nostra soluzione}
 
-		\begin{alertblock}{Alert block}
-			$$ E = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge (x_1 \vee x_2 \vee x_4) $$
-		\end{alertblock}
+\begin{frame}{La nostra soluzione}
+  \begin{itemize}
+    \item Sfruttare informazione aggiuntiva dell'object detector (per
+    ogni proposal restituisce una \alert{distribuzione di probabilità}
+    su un set di classi)
+    \item Le classi esprimono il \alert{contenuto semantico} delle
+    proposal
+    \item Data una frase ed una proposal, è più probabile che vi sia
+    grounding tra le due se la \alert{similarità} tra la frase e la
+    classe della proposal è alta
+  \end{itemize}
+\end{frame}
 
-		\begin{exampleblock}{Example block}
-			Proin tincidunt, neque at tincidunt mollis
-		\end{exampleblock}
-	\end{frame}
+\begin{frame}{Architettura}
+  \centering
+  \includegraphics[width=9cm]{images/model-architecture.png}
+\end{frame}
+
+\begin{frame}{Similarità di concetto}
+  \centering
+  \includegraphics[width=9cm]{images/concept-selection-example.png}
+\end{frame}
+
+\begin{frame}{Predizioni}
+  \centering
+  \includegraphics[width=10cm]{images/predictions.png}
+\end{frame}
+
+\begin{frame}{Loss}
+  \centering
+  \includegraphics[width=9cm]{images/loss.png}
+\end{frame}
+
+\begin{frame}{Similarità Multi-modale}
+  TODO
+\end{frame}
+
+\begin{frame}{First section}
+  \begin{block}{Normal block}
+    Fusce luctus venenatis felis quis semper
+  \end{block}
+
+  \begin{alertblock}{Alert block}
+    $$ E = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge (x_1 \vee x_2 \vee x_4) $$
+  \end{alertblock}
+
+  \begin{exampleblock}{Example block}
+    Proin tincidunt, neque at tincidunt mollis
+  \end{exampleblock}
+\end{frame}
 
 
 \end{document}
