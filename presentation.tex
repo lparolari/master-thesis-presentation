@@ -199,19 +199,30 @@
   \includegraphics[width=9cm]{images/similing-woman.png}
 \end{frame}
 
-\begin{frame}{First section}
-  \begin{block}{Normal block}
-    Fusce luctus venenatis felis quis semper
-  \end{block}
+\section{Conclusioni}
 
-  \begin{alertblock}{Alert block}
-    $$ E = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge (x_1 \vee x_2 \vee x_4) $$
-  \end{alertblock}
-
-  \begin{exampleblock}{Example block}
-    Proin tincidunt, neque at tincidunt mollis
-  \end{exampleblock}
+\begin{frame}{Conclusioni e lavori futuri}
+  \begin{columns}
+    \column{0.50\linewidth}
+      \textbf{Conclusioni}
+      \begin{itemize}
+        \item Anche con un modello semplice, la concept similarity ci
+        ha permesso di raggiungere risultati \alert{comparabili} allo
+        stato dell'arte
+        \item Numerosi \alert{fallimenti} durante il percorso, ma la
+        scienza è anche questo
+      \end{itemize}
+    \column{0.50\linewidth}
+      \textbf{Lavori Futuri}
+      \begin{itemize}
+        \item Evitare di apprendere \alert{rappresentazioni visive che
+        mimano} quelle testuali (e vice-versa), forzate dalla misura
+        di similarità
+        \item Considerare più \alert{esempi negativi} nella loss
+        \item Considerare gli \alert{attributi} per disambiguare
+        proposal simili (stesso concetto)
+      \end{itemize}
+  \end{columns}
 \end{frame}
-
 
 \end{document}
