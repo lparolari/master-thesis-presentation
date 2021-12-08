@@ -1,6 +1,7 @@
 \documentclass{beamer}
 
 \usepackage{./theme/beamerthemePadova}
+\usepackage{bm}
 
 \title{Weakly Supervised Visual-Textual Grounding based on Concept Similarity}
 %\subtitle{\small Dipartimento di Matematica ``Tullio Levi-Civita'' \\ Corso di Laurea Magistrale in Informatica}
@@ -69,10 +70,67 @@
     su un set di classi)
     \item Le classi esprimono il \alert{contenuto semantico} delle
     proposal
-    \item Data una frase ed una proposal, è più probabile che vi sia
+    \item Data una frase e una proposal, è più probabile che vi sia
     grounding tra le due se la \alert{similarità} tra la frase e la
     classe della proposal è alta
+    \vspace{0.5cm}
+    \item Il modello utilizza \alert{tre input}: immagine, testo e
+    similarità di concetto 
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Visual Branch}
+  \begin{columns}
+    \column{0.50\linewidth}
+      \begin{itemize}
+        \item Object detector estrae dall'immagine $k$ proposal e per
+        ognuna $v$ \alert{feature visuali}
+        \item Aggiungiamo cinque \alert{feature spaziali} (coordinate e
+        area della proposal)
+        \item \alert{Proiezione} delle feature ne riduce la dimensionalità
+      \end{itemize}
+    \column{0.50\linewidth}
+      \centering
+      \includegraphics[width=3.5cm]{images/visual-branch.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Textual Branch}
+  \begin{columns}
+    \column{0.50\linewidth}
+      \begin{itemize}
+        \item Calcoliamo il \alert{word embedding} di ogni parola nella query
+        \item Codifichiamo la \alert{sequenza} di parole tramite una RNN con celle LSTM
+        \item Utiliziamo l'output ottenuto per \alert{l'ultima} parola
+      \end{itemize}
+    \column{0.50\linewidth}
+      \centering
+      \includegraphics[width=3.5cm]{images/textual-branch.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Concept Branch}
+  \begin{columns}
+    \column{0.50\linewidth}
+      \begin{itemize}
+        \item Un parser estrae le parole più importanti dalla frase (\alert{head})
+        \item Selezioniamo il \alert{concetto} della frase parola con
+        similarità più alta rispetto alle classi delle proposal)
+        \vspace{0.5cm}
+        \item Concept Similarity = similarità tra \alert{l'embedding del
+        concetto} della frase e \alert{l'embedding della classe} di ogni
+        proposal
+      \end{itemize}
+    \column{0.50\linewidth}
+      \centering
+      \includegraphics[width=4.5cm]{images/concept-branch.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Concept Selection}
+  \framesubtitle{Esempio}
+  \centering
+  \includegraphics[width=9cm]{images/concept-selection-example.png}
 \end{frame}
 
 \begin{frame}{Architettura}
@@ -80,17 +138,46 @@
   \includegraphics[width=9cm]{images/model-architecture.png}
 \end{frame}
 
-\begin{frame}{Similarità di concetto}
-  \centering
-  \includegraphics[width=9cm]{images/concept-selection-example.png}
+\begin{frame}{Predizioni}
+  \begin{itemize}
+    \item Predizioni calcolate come uno \alert{score di similarità}
+    tra la modalità visiva e quella testuale
+    \item Alle predizioni viene \alert{applicata} la concept
+    similarity
+    \item \alert{Media pesata} tra i due score di similarità ($\lambda
+    = 0.5$)
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Predizioni}
+  \framesubtitle{Esempio}
   \centering
   \includegraphics[width=10cm]{images/predictions.png}
 \end{frame}
 
 \begin{frame}{Loss}
+  Fissata un'immagine $\bm{I}$, due frasi $\text{S}$ e $\text{S}'$
+  dove $\text{S}$ descrive $\bm{I}$ mentre $\text{S}'$ \textbf{non}
+  descrive $\bm{I}$:
+  \begin{itemize}
+    \item \alert{Massimizziamo} la similarità multimodale tra $\bm{I}$
+    e $\text{S}$
+    \item \alert{Minimizziamo} la similarità multimodale tra $\bm{I}$
+    e $\text{S}'$
+  \end{itemize}
+  \vspace{1cm}
+  La \alert{similarità multimodale} rappresenta la similarità
+  aggregata tra immagine e frase, condizionata dalle frasi nominali
+  (noun phrases)
+\end{frame}
+
+\begin{frame}{Similarità Multimodale}
+  \centering
+  \includegraphics[width=9cm]{images/sim-mm.png}
+\end{frame}
+
+\begin{frame}{Loss}
+  \framesubtitle{Esempio}
   \centering
   \includegraphics[width=9cm]{images/loss.png}
 \end{frame}
