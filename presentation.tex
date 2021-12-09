@@ -40,24 +40,23 @@
     e \alert{robotic navigation}
     \vspace{0.5cm}
     \item Per sua natura, il phrase grounding ha bisogno di
-    \alert{moltissime annotazioni}, quindi\dots
-    \item Utilizziamo la supervisione debole (weak)
+    \alert{moltissime annotazioni}
+    \item Utilizziamo la \alert{supervisione debole} (weak)
   \end{itemize}
 \end{frame}
 
 \section{Stato dell'arte}
 
-\begin{frame}{Approcci}
-  \framesubtitle{Weakly supervised settings}
+\begin{frame}{Approcci weakly supervised}
   \begin{itemize}
     \item Sfruttare l'informazione contenuta nella \alert{struttura
     della frase}
     \item Riformulare il problema del phrase grounding sotto forma del
     task \alert{image retrieval}
-    \item \alert{Ricostruire} le feature originali partendo da un
+    \item \alert{Ricostruire} le features originali partendo da un
     codice (encoder-decoder)
     \item Apprendere una rappresentazione tramite
-    \alert{attrazione e repulsione} delle feature
+    \alert{attrazione e repulsione} delle features
   \end{itemize}
 \end{frame}
 
@@ -84,10 +83,10 @@
     \column{0.50\linewidth}
       \begin{itemize}
         \item Object detector estrae dall'immagine $k$ proposal e per
-        ognuna $v$ \alert{feature visuali}
-        \item Aggiungiamo cinque \alert{feature spaziali} (coordinate e
+        ognuna un vettore di \alert{features visuali}
+        \item Aggiungiamo cinque \alert{features spaziali} (coordinate e
         area della proposal)
-        \item \alert{Proiezione} delle feature ne riduce la dimensionalità
+        \item \alert{Proiezione} delle features ne riduce la dimensionalità
       \end{itemize}
     \column{0.50\linewidth}
       \centering
@@ -100,7 +99,7 @@
     \column{0.50\linewidth}
       \begin{itemize}
         \item Calcoliamo il \alert{word embedding} di ogni parola nella query
-        \item Codifichiamo la \alert{sequenza} di parole tramite una RNN con celle LSTM
+        \item Codifichiamo la \alert{sequenza} di parole tramite una LSTM
         \item Utiliziamo l'output ottenuto per \alert{l'ultima} parola
       \end{itemize}
     \column{0.50\linewidth}
@@ -209,8 +208,6 @@
         \item Anche con un modello semplice, la concept similarity ci
         ha permesso di raggiungere risultati \alert{comparabili} allo
         stato dell'arte
-        \item Numerosi \alert{fallimenti} durante il percorso, ma la
-        scienza è anche questo
       \end{itemize}
     \column{0.50\linewidth}
       \textbf{Lavori Futuri}
