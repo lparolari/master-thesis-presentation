@@ -11,22 +11,81 @@
 
 \section{Talk}
 
-\textbf{Stato dell'arte}. In letterature sono stati sperimentate
-diverse strategie per affrontare il problema del phrase grounding. In
-ambito weakly superivsed però, non avendo a disposizione la ground
-truth (ovver l'informazione su quale sia la proposal corretta da
-collegare ad una frase), non è possibile operare in maniera
-tradizionale. Per questo motivo, alcuni lavori tentano di sfruttare la
-struttura morfosintattica delle frasi in linguaggio naturale per
-costruire dei vincoli che la localizzazione degli oggetti
-nell'immagine deve rispettare. Altri invece riformulano il problema
-del phrase grounding come un task di image retrieval, ovvero data una
-frase bisogna cercare l'immagine descritta dalla frase tra un set di
-immagini. L'ipotesi è che imparare a cercare un'immagine data una
-frase che la descriva implichi imparare a localizzare porzioni di
-immagine, ovvero fare grounding. In altri casi invece si sfrutta la supervisione weak per imparare a ricostruire le feature originali di immagine e testo da un codice. In questo caso si utilizza l'approccio encoder-decoder. In alcuni lavori recenti si nota un maggiore utilizzo di informazioni aggiuntive come la conoscenza dell'object detector. In particolare, spesso e volentieri l'object detector è allenato per classificare categorie di bounding box su un set di etichette, che teoricamente dovrebbero il contenuto semantico della proposal.
+Buongiorno, io sono Luca Parolari e oggi presento il lavoro che ho
+svolto durante il tirocinio per la mia tesi, il cui titolo è ``Weakly
+Supervised VT grounding based on Concept Similarity''. Durante la
+presentazione discuterò il problema del vt grounding motivandone la
+rilevanza. Mostrerò poi alcuni degli approcci più rilevanti fatti dai
+ricercatori in quest'ambito per poi passare alla nostra soluzione,
+discutendone i risultati e tirando poi le somme sul lavoro svolto.
 
-\textbf{La nostra soluzione}.
+Il visual textual grounding è definito come l'attività di
+localizzazione di porzioni di un'immagine referenziate da una frase.
+Il problema infatti utilizza due input: l'immagine, che nell'esempio è
+il cane che gioca con la palla, e una frase. Nell'esempio, un sistema
+di phrase grounding deve essere in grado di localizzare i tre oggetti
+(cane, palla e prato) data la frase in questione. Seppur questo possa
+sembrare un problema banale per gli umani, per le macchine non lo è
+affatto perché richiede la comprensione semantica di entrambe le
+modalità visive e testuali e la collaborazione delle due modalità per
+produrre le localizzazioni. Il phrase grounding è un problema
+perticolare perchè richiede diverse annotazioni: in particolare,
+dobbiamo identificare le frasi nominali nella frase, distinguere gli
+oggetti nell'immagine e dobbiamo includere un'informazione che
+specifichi quali sono le localizzazioni corrette (coppie frase
+nominale-immagine).
+
+% Se pensiamo ad un bambino che impara a fare
+% queste associazioni, data una frase, dovremo insegnarli a distinguere
+% i vari concetti nella frase (nell'esempio: il cane, la palla e il
+% prato), dovremo insegnarli che il cane, la palla e il prato hanno
+% certe caratterstiche sull'immagine, e in ultimo dovrmeo insegnargli
+% come localizzare un concetto sull'immagine (ovvero indicare). 
+
+Il phrase grounding è un problema rilevante in computer vision perchè
+è il task tramite cui è possibile esprimere problemi più complessi,
+come il visual question answering (ovvero il task di rispondere a
+domande riguardanti immagini), image retrieval (ovvero trovare
+l'immagine descritta testualmente tra un set di immagini) e la
+navigazione robotica. Dallo sviluppo del dataset Flickr30k Entities
+fino ad oggi sono stati fatti notevoli progressi nella risoluzione del
+problema ma, come dicevo prima, per via delle due modalità visiva e
+testuale, il task rimane complicato e ambiguo per una macchina.
+Inoltre, per via dell'enorme quantità di annotazioni che richiede (se
+ripensiamo all'immagine del cane, abbiamo bisogno delle TODO) è
+difficile scalare la soluzione in contesti più ampi e migliorare lo
+sviluppo tramite la raccolta di altri dataset con più esempi per via
+dell'enorme costo sia in termini di tempo che di denaro. Per questo
+motivo il problema è stato studiato con diversi tipi di supervisione,
+ovvero con diverse tipologie
+
+% In letteratura ci sono molti lavori che studiano questo problema, ma
+% molti evidenziano un limite dato dal numero di annotazioni necessario
+% per apprenderlo: ad esempio, una tale quantità di annotazioni è un
+% forte limite alla raccolta di nuovi dataset più grandi, specialmente
+% per il costo in termini di denaro e soldi che 
+
+In letterature sono stati sperimentate diverse strategie per
+affrontare il problema del phrase grounding. In ambito weakly
+superivsed però, non avendo a disposizione la ground truth (ovver
+l'informazione su quale sia la proposal corretta da collegare ad una
+frase), non è possibile operare in maniera tradizionale. Per questo
+motivo, alcuni lavori tentano di sfruttare la struttura
+morfosintattica delle frasi in linguaggio naturale per costruire dei
+vincoli che la localizzazione degli oggetti nell'immagine deve
+rispettare. Altri invece riformulano il problema del phrase grounding
+come un task di image retrieval, ovvero data una frase bisogna cercare
+l'immagine descritta dalla frase tra un set di immagini. L'ipotesi è
+che imparare a cercare un'immagine data una frase che la descriva
+implichi imparare a localizzare porzioni di immagine, ovvero fare
+grounding. In altri casi invece si sfrutta la supervisione weak per
+imparare a ricostruire le feature originali di immagine e testo da un
+codice. In questo caso si utilizza l'approccio encoder-decoder. In
+alcuni lavori recenti si nota un maggiore utilizzo di informazioni
+aggiuntive come la conoscenza dell'object detector. In particolare,
+spesso e volentieri l'object detector è allenato per classificare
+categorie di bounding box su un set di etichette, che teoricamente
+dovrebbero il contenuto semantico della proposal.
 
 
 \end{document}
