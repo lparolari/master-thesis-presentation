@@ -73,8 +73,8 @@
     grounding tra le due se la \alert{similarità} tra la frase e la
     classe della proposal è alta
     \vspace{0.5cm}
-    \item Il modello utilizza \alert{tre input}: immagine, testo e
-    similarità di concetto 
+    \item Il modello utilizza \alert{tre input}: modalità visuale,
+    modalità testuale e similarità di concetto 
   \end{itemize}
 \end{frame}
 
@@ -132,11 +132,6 @@
   \includegraphics[width=9cm]{images/concept-selection-example.png}
 \end{frame}
 
-\begin{frame}{Architettura}
-  \centering
-  \includegraphics[width=9cm]{images/model-architecture.png}
-\end{frame}
-
 \begin{frame}{Predizioni}
   \begin{itemize}
     \item Predizioni calcolate come uno \alert{score di similarità}
@@ -154,6 +149,20 @@
   \includegraphics[width=10cm]{images/predictions.png}
 \end{frame}
 
+\begin{frame}{Architettura}
+  \centering
+  \includegraphics[width=9cm]{images/model-architecture.png}
+\end{frame}
+
+\begin{frame}{Similarità Multimodale}
+  La \alert{similarità multimodale} rappresenta la similarità
+  aggregata tra immagine e frase, condizionata dalle frasi nominali
+  (noun phrases) \vspace{1cm}
+
+  \centering
+  \includegraphics[width=9cm]{images/sim-mm.png}
+\end{frame}
+
 \begin{frame}{Loss}
   Fissata un'immagine $\bm{I}$, due frasi $\text{S}$ e $\text{S}'$
   dove $\text{S}$ descrive $\bm{I}$ mentre $\text{S}'$ \textbf{non}
@@ -164,21 +173,11 @@
     \item \alert{Minimizziamo} la similarità multimodale tra $\bm{I}$
     e $\text{S}'$
   \end{itemize}
-  \vspace{1cm}
-  La \alert{similarità multimodale} rappresenta la similarità
-  aggregata tra immagine e frase, condizionata dalle frasi nominali
-  (noun phrases)
-\end{frame}
+  
+  \vspace{0.5cm}
 
-\begin{frame}{Similarità Multimodale}
   \centering
-  \includegraphics[width=9cm]{images/sim-mm.png}
-\end{frame}
-
-\begin{frame}{Loss}
-  \framesubtitle{Esempio}
-  \centering
-  \includegraphics[width=9cm]{images/loss.png}
+  \includegraphics[width=7cm]{images/loss.png}
 \end{frame}
 
 \section{Risultati}
@@ -196,6 +195,9 @@
 \begin{frame}{Risultati Qualitativi}
   \centering
   \includegraphics[width=9cm]{images/similing-woman.png}
+  
+  ``A woman in a dark dress smiles while a woman across from her and a
+  child sit in chairs''
 \end{frame}
 
 \section{Conclusioni}
@@ -215,7 +217,6 @@
         \item Evitare di apprendere \alert{rappresentazioni visive che
         mimano} quelle testuali (e vice-versa), forzate dalla misura
         di similarità
-        \item Considerare più \alert{esempi negativi} nella loss
         \item Considerare gli \alert{attributi} per disambiguare
         proposal simili (stesso concetto)
       \end{itemize}
