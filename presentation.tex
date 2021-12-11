@@ -33,16 +33,27 @@
 
 \section{Motivazione}
 
-\begin{frame}{Motivazione}
-  \begin{itemize}
-    \item Tassello fondamentale per diversi task in computer vision
-    come il \alert{visual question answering}, \alert{image retrieval}
-    e \alert{robotic navigation}
-    \vspace{0.5cm}
-    \item Per sua natura, il phrase grounding ha bisogno di
-    \alert{moltissime annotazioni}
-    \item Utilizziamo la \alert{supervisione debole} (weak)
-  \end{itemize}
+\begin{frame}{Motivazione e sfide}
+  \begin{columns}
+    \column{0.50\linewidth}
+      \begin{itemize}
+        \item Tassello fondamentale per diversi task in computer vision
+        come 
+        \begin{itemize} 
+          \item \alert{visual question answering}, 
+          \item \alert{image retrieval}, e 
+          \item \alert{robotic navigation}
+        \end{itemize}
+      \end{itemize}
+    \column{0.50\linewidth}
+      \begin{itemize}
+        \item Necessarie \alert{moltissime annotazioni}
+        \item Utilizziamo la \alert{supervisione debole} (weak)
+      \end{itemize}
+      \vspace{0.5cm}
+      \centering
+      \includegraphics[width=5cm]{images/full-weak-no-supervision.png}
+  \end{columns}
 \end{frame}
 
 \section{Stato dell'arte}
