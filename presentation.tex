@@ -2,6 +2,7 @@
 
 \usepackage{./theme/beamerthemePadova}
 \usepackage{bm}
+\usepackage{booktabs}
 
 \title{Weakly Supervised Visual-Textual Grounding based on Concept Similarity}
 %\subtitle{\small Dipartimento di Matematica ``Tullio Levi-Civita'' \\ Corso di Laurea Magistrale in Informatica}
@@ -219,6 +220,19 @@
   \textbf{ReferIt}
   \begin{center}
     \includegraphics[width=9cm]{images/referit-results.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Multimodal Alignment Framework (MAF)}
+  \begin{center}
+    \begin{tabular}{p{4cm}cc} 
+       & \textbf{Il nostro lavoro} & \textbf{MAF} \\
+      \addlinespace
+      Informazione sulle classi & Prior & Input del modello \\ 
+      Rappresentazione frasi & LSTM & Media embeddings \\
+      Funzione di similarità & Cosine Similarity & Dot Product \\
+      Numero esempi negativi & 1 & $> 1$ \\ 
+    \end{tabular}
   \end{center}
 \end{frame}
 
