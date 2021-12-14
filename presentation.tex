@@ -148,16 +148,16 @@
   \begin{itemize}
     \item Predizioni calcolate come uno \alert{score di similarità}
     tra la modalità visiva e quella testuale
-    \item Alle predizioni viene \alert{applicata} la concept
-    similarity
-    \item \alert{Media pesata} tra i due score di similarità ($\lambda
-    = 0.5$)
+    \item Alle predizioni viene applicata la concept similarity come
+    \alert{Media pesata} tra i due score di similarità
+    \item In fase di inferenza, per ogni frase nominale il modello
+    restituisce la \alert{proposal con score massimo}
   \end{itemize}
 
   \vspace{0.5cm}
 
   \centering
-  \includegraphics[width=10cm]{images/predictions.png}
+  \includegraphics[width=9cm]{images/predictions.png}
 \end{frame}
 
 \begin{frame}{Architettura}
