@@ -80,9 +80,12 @@
     su un set di classi)
     \item Le classi esprimono il \alert{contenuto semantico} delle
     proposal
-    \item Data una frase e una proposal, è più probabile che vi sia
-    grounding tra le due se la \alert{similarità} tra la frase e la
-    classe della proposal è alta
+    \vspace{0.5cm}
+    \begin{alertblock}{Assunzione}
+      Data una frase e una proposal, è più probabile che vi sia
+      grounding tra le due se la \alert{similarità} tra la frase e la
+      classe della proposal è alta
+    \end{alertblock}
     \vspace{0.5cm}
     \item Il modello utilizza \alert{tre input}: modalità visuale,
     modalità testuale e similarità di concetto 
@@ -123,10 +126,9 @@
   \begin{columns}
     \column{0.50\linewidth}
       \begin{itemize}
-        \item Un parser estrae le parole più importanti dalla frase (\alert{head})
-        \item Selezioniamo il \alert{concetto} della frase parola con
-        similarità più alta rispetto alle classi delle proposal)
-        \vspace{0.5cm}
+        \item Selezioniamo il \alert{concetto} della frase come la
+        \alert{parola} con similarità più alta rispetto alle classi
+        delle proposal
         \item Concept Similarity = similarità tra \alert{l'embedding del
         concetto} della frase e \alert{l'embedding della classe} di ogni
         proposal
@@ -165,9 +167,9 @@
 \end{frame}
 
 \begin{frame}{Similarità Multimodale}
-  La \alert{similarità multimodale} rappresenta la similarità
-  aggregata tra immagine e frase, condizionata dalle frasi nominali
-  (noun phrases) \vspace{1cm}
+  La similarità multimodale rappresenta la \alert{similarità aggregata
+  tra immagine e frase}, condizionata dalle frasi nominali (noun
+  phrases) \vspace{1cm}
 
   \centering
   \includegraphics[width=9cm]{images/sim-mm.png}
@@ -217,18 +219,19 @@
     \column{0.50\linewidth}
       \textbf{Conclusioni}
       \begin{itemize}
-        \item Anche con un modello semplice, la concept similarity ci
-        ha permesso di raggiungere risultati \alert{comparabili} allo
-        stato dell'arte
+        \item Anche con un \alert{modello semplice}, la concept
+        similarity ci ha permesso di raggiungere \alert{risultati
+        comparabili} allo stato dell'arte
       \end{itemize}
     \column{0.50\linewidth}
       \textbf{Lavori Futuri}
       \begin{itemize}
-        \item Evitare di apprendere \alert{rappresentazioni visive che
-        mimano} quelle testuali (e vice-versa), forzate dalla misura
-        di similarità
-        \item Considerare gli \alert{attributi} per disambiguare
-        proposal simili (stesso concetto)
+        \item \alert{Evitare} di apprendere \alert{rappresentazioni
+        visive che mimano quelle testuali} (e vice-versa), forzate
+        dalla misura di similarità
+        \item Considerare gli \alert{attributi} delle proposal per
+        \alert{disambiguare le predizioni} relative a frasi simili
+        (stesso concetto)
       \end{itemize}
   \end{columns}
 \end{frame}
